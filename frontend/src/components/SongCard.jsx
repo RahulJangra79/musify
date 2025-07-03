@@ -44,7 +44,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
         </div>
         <img
           alt="song_img"
-          src={image}
+          src={albumArt}
           className="w-full h-full object-cover rounded"
         />
       </div>
