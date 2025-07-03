@@ -1,7 +1,6 @@
 import loader from './loader.svg';
-import logo from './logo.svg';
-
+import Musify_Logo from './Musify_Logo.svg';
 export {
-  logo,
+  Musify_Logo,
   loader,
 };
