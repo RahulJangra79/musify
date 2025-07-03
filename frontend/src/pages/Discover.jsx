@@ -1,51 +1,84 @@
-import { Error, Loader, SongCard } from "../components";
-import { genres } from "../assets/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetTopTracksQuery } from "../redux/services/spotify";
+import { useGetTopTracksQuery, useGetRecentlyPlayedQuery, useGetSavedTracksQuery } from "../redux/services/spotify";
+import { Loader, Error, SongCard } from "../components";
 
 const Discover = () => {
   const dispatch = useDispatch();
-
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
-  const { data, isFetching, error } = useGetTopTracksQuery();
+  const {
+    data: topTracks,
+    isFetching: fetchingTop,
+    error: errorTop,
+  } = useGetTopTracksQuery();
 
-  const genreTitle = "Pop";
+  const {
+    data: recent,
+    isFetching: fetchingRecent,
+    error: errorRecent,
+  } = useGetRecentlyPlayedQuery();
 
-  if (isFetching) return <Loader title="Loading songs..." />;
+  const {
+    data: saved,
+    isFetching: fetchingSaved,
+    error: errorSaved,
+  } = useGetSavedTracksQuery();
 
-  if (error) return <Error />;
+  if (fetchingTop || fetchingRecent || fetchingSaved) return <Loader title="Loading your Spotify vibes..." />;
+  if (errorTop || errorRecent || errorSaved) return <Error />;
 
   return (
-    <div className="flex flex-col">
-      <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10">
-        <h2 className="font-bold text-3xl text-white text-left">
-          Discover {genreTitle}
-        </h2>
-        <select
-          onChange={() => {}}
-          value=""
-          className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5"
-        >
-          {genres.map((genre) => (
-            <option key={genre.value} value={genre.value}>
-              {genre.title}
-            </option>
+    <div className="flex flex-col gap-12">
+
+      {/* 🎧 Top Tracks */}
+      <div>
+        <h2 className="text-3xl font-bold text-white mb-4">Your Top Tracks</h2>
+        <div className="flex flex-wrap gap-8">
+          {topTracks?.items?.map((track, i) => (
+            <SongCard
+              key={track.id}
+              song={track}
+              i={i}
+              data={topTracks.items}
+              isPlaying={isPlaying}
+              activeSong={activeSong}
+            />
           ))}
-        </select>
+        </div>
       </div>
 
-      <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-        {data?.map((track, i) => (
-          <SongCard
-            key={track.id}
-            song={track}
-            i={i}
-            isPlaying={isPlaying}
-            activeSong={activeSong}
-            data={data.items}
-          />
-        ))}
+      {/* 🕒 Recently Played */}
+      <div>
+        <h2 className="text-3xl font-bold text-white mb-4">Recently Played</h2>
+        <div className="flex flex-wrap gap-8">
+          {recent?.items?.map(({ track }, i) => (
+            <SongCard
+              key={track.id}
+              song={track}
+              i={i}
+              data={recent.items.map(item => item.track)}
+              isPlaying={isPlaying}
+              activeSong={activeSong}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* 💾 Saved Songs */}
+      <div>
+        <h2 className="text-3xl font-bold text-white mb-4">Your Saved Songs</h2>
+        <div className="flex flex-wrap gap-8">
+          {saved?.items?.map(({ track }, i) => (
+            <SongCard
+              key={track.id}
+              song={track}
+              i={i}
+              data={saved.items.map(item => item.track)}
+              isPlaying={isPlaying}
+              activeSong={activeSong}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

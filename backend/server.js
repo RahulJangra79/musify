@@ -57,6 +57,40 @@ app.get("/api/top-tracks", async (req, res) => {
   }
 });
 
+app.get("/api/recently-played", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+
+  try {
+    const { data } = await axios.get("https://api.spotify.com/v1/me/player/recently-played?limit=20", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    res.json(data);
+  } catch (error) {
+    console.error("Recently played error:", error.response?.data || error.message);
+    res.status(400).json({ error: "Failed to fetch recently played tracks" });
+  }
+});
+
+app.get("/api/saved-tracks", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+
+  try {
+    const { data } = await axios.get("https://api.spotify.com/v1/me/tracks?limit=20", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    res.json(data);
+  } catch (error) {
+    console.error("Saved tracks error:", error.response?.data || error.message);
+    res.status(400).json({ error: "Failed to fetch saved tracks" });
+  }
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
