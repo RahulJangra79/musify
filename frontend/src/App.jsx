@@ -1,5 +1,3 @@
-
-
 import { useSelector } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
@@ -14,7 +12,7 @@ import {
   TopCharts,
 } from './pages';
 import Login from './components/auth/Login';
-import Callback from './components/auth/callback'; // <-- make sure this exists
+import Callback from './components/auth/callback';
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
@@ -22,7 +20,6 @@ const App = () => {
 
   const token = localStorage.getItem("spotify_access_token");
 
-  // Only show the full app if logged in and not on the callback route
   if (!token && location.pathname !== "/callback") {
     return <Login />;
   }
@@ -36,7 +33,7 @@ const App = () => {
         <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
           <div className="flex-1 h-fit pb-40">
             <Routes>
-              <Route path="/callback" element={<Callback />} /> {/* handle Spotify redirect */}
+              <Route path="/callback" element={<Callback />} />
               <Route path="/" element={<Discover />} />
               <Route path="/top-artists" element={<TopArtists />} />
               <Route path="/top-charts" element={<TopCharts />} />
