@@ -4,15 +4,32 @@ import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
 const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
-
   const dispatch = useDispatch();
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
 
+  // const handlePlayClick = () => {
+  //   dispatch(setActiveSong({ song, data, i }));
+  //   dispatch(playPause(true));
+  // };
+
   const handlePlayClick = () => {
-    dispatch(setActiveSong({ song, data, i }));
+    dispatch(
+      setActiveSong(
+        {
+          ...song,
+          title: song.name,
+          subtitle: song.artists?.[0]?.name,
+          images: { coverart: song.album?.images?.[0]?.url },
+          hub: { actions: [{}, { uri: song.preview_url }] },
+        },
+        data,
+        i
+      )
+    );
+
     dispatch(playPause(true));
   };
 
@@ -26,9 +43,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
       <div className="relative w-full h-56 group">
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
-            activeSong?.name === name
-              ? "flex bg-black bg-opacity-70"
-              : "hidden"
+            activeSong?.name === name ? "flex bg-black bg-opacity-70" : "hidden"
           }`}
         >
           <PlayPause
@@ -51,8 +66,9 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
           <Link to={`/songs/${song.id}`}>{name}</Link>
         </p>
         <p className="text-sm truncate text-gray-300 mt-1">
-          {/* <Link to={`/artists/${artistId?.[0]?.id}`}>{artistName}</Link> */}
-          <Link to={`/artists/${artistId || "#"}`}>{artistName || "Unknown Artist"}</Link>
+          <Link to={`/artists/${artistId || "#"}`}>
+            {artistName || "Unknown Artist"}
+          </Link>
         </p>
       </div>
     </div>
