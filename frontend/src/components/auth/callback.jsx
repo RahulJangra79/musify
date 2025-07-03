@@ -8,7 +8,7 @@ const Callback = () => {
     const code = new URLSearchParams(window.location.search).get("code");
 
     if (code) {
-      fetch("http://localhost:5000/api/get-token", {
+      fetch("https://musify-vmr4.onrender.com/api/get-token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code }),
@@ -16,7 +16,7 @@ const Callback = () => {
         .then(res => res.json())
         .then(data => {
           localStorage.setItem("spotify_access_token", data.access_token);
-          navigate("/dashboard"); // Navigate to your app’s main page
+          navigate("/"); // Navigate to your app’s main page
         })
         .catch(err => {
           console.error("Token fetch failed", err);
