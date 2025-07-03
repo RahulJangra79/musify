@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useGetTopTracksQuery, useGetRecentlyPlayedQuery, useGetSavedTracksQuery } from "../redux/services/spotify";
+import {
+  useGetTopTracksQuery,
+  useGetRecentlyPlayedQuery,
+  useGetSavedTracksQuery,
+} from "../redux/services/spotify";
 import { Loader, Error, SongCard } from "../components";
 
 const Discover = () => {
@@ -24,12 +28,16 @@ const Discover = () => {
     error: errorSaved,
   } = useGetSavedTracksQuery();
 
-  if (fetchingTop || fetchingRecent || fetchingSaved) return <Loader title="Loading your Spotify vibes..." />;
+  console.log("🎧 Top Tracks:", topTracks);
+  console.log("🕒 Recently Played:", recent);
+  console.log("💾 Saved Tracks:", saved);
+
+  if (fetchingTop || fetchingRecent || fetchingSaved)
+    return <Loader title="Loading your Spotify vibes..." />;
   if (errorTop || errorRecent || errorSaved) return <Error />;
 
   return (
     <div className="flex flex-col gap-12">
-
       {/* 🎧 Top Tracks */}
       <div>
         <h2 className="text-3xl font-bold text-white mb-4">Your Top Tracks</h2>
@@ -56,7 +64,7 @@ const Discover = () => {
               key={track.id}
               song={track}
               i={i}
-              data={recent.items.map(item => item.track)}
+              data={recent.items.map((item) => item.track)}
               isPlaying={isPlaying}
               activeSong={activeSong}
             />
@@ -73,7 +81,7 @@ const Discover = () => {
               key={track.id}
               song={track}
               i={i}
-              data={saved.items.map(item => item.track)}
+              data={saved.items.map((item) => item.track)}
               isPlaying={isPlaying}
               activeSong={activeSong}
             />

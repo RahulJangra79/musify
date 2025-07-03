@@ -5,7 +5,7 @@ import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
 const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
 
-  console.log(song);
+  // console.log(song);
   const dispatch = useDispatch();
 
   const handlePauseClick = () => {
@@ -17,9 +17,12 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
     dispatch(playPause(true));
   };
 
-  const name = song.name;
-  const artistName = song.artists?.[0]?.name || "Unknown Artist";
-  const image = song.album?.images?.[0]?.url || "";
+  const name = song?.name;
+  const albumArt = song?.album?.images?.[0]?.url;
+  const artistName = song?.artists?.[0]?.name;
+  const artistId = song?.artists?.[0]?.id;
+
+
 
   return (
     <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
@@ -51,7 +54,8 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
           <Link to={`/songs/${song.id}`}>{name}</Link>
         </p>
         <p className="text-sm truncate text-gray-300 mt-1">
-          <Link to={`/artists/${artists?.[0]?.id}`}>{artistName}</Link>
+          {/* <Link to={`/artists/${artistId?.[0]?.id}`}>{artistName}</Link> */}
+          <Link to={`/artists/${artistId || "#"}`}>{artistName || "Unknown Artist"}</Link>
         </p>
       </div>
     </div>
