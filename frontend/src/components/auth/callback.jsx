@@ -13,12 +13,17 @@ const Callback = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code }),
       })
-        .then(res => res.json())
-        .then(data => {
-          localStorage.setItem("spotify_access_token", data.access_token);
-          navigate("/"); // Navigate to your app’s main page
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Token response:", data);
+          if (data?.access_token) {
+            localStorage.setItem("spotify_access_token", data.access_token);
+            navigate("/");
+          } else {
+            console.error("No access token in response:", data);
+          }
         })
-        .catch(err => {
+        .catch((err) => {
           console.error("Token fetch failed", err);
         });
     }
