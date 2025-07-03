@@ -36,6 +36,23 @@ app.post("/api/get-token", async (req, res) => {
   }
 });
 
+app.get("/api/top-tracks", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+
+  try {
+    const { data } = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    res.json(data);
+  } catch (error) {
+    console.error("Spotify fetch error:", error.response?.data || error.message);
+    res.status(400).json({ error: "Failed to fetch top tracks" });
+  }
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
