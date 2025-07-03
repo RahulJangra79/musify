@@ -5,7 +5,6 @@ import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
 const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const dispatch = useDispatch();
-  const { name, artistName, artwork } = song.attributes;
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -16,12 +15,16 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
     dispatch(playPause(true));
   };
 
+  const name = song.name;
+  const artistName = song.artists?.[0]?.name || "Unknown Artist";
+  const image = song.album?.images?.[0]?.url || "";
+
   return (
     <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
       <div className="relative w-full h-56 group">
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
-            activeSong?.attributes?.name === name
+            activeSong?.name === name
               ? "flex bg-black bg-opacity-70"
               : "hidden"
           }`}
@@ -36,7 +39,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
         </div>
         <img
           alt="song_img"
-          src={artwork.url}
+          src={image}
           className="w-full h-full object-cover rounded"
         />
       </div>
@@ -46,7 +49,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
           <Link to={`/songs/${song.id}`}>{name}</Link>
         </p>
         <p className="text-sm truncate text-gray-300 mt-1">
-          <Link to={`/artists/${artistName}`}>{artistName}</Link>
+          <Link to={`/artists/${artists?.[0]?.id}`}>{artistName}</Link>
         </p>
       </div>
     </div>

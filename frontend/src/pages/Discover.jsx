@@ -3,13 +3,10 @@ import { genres } from "../assets/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetTopTracksQuery } from "../redux/services/spotify";
 
-
-
-
 const Discover = () => {
   const dispatch = useDispatch();
 
-  const { activeSong, isPlaying} = useSelector((state) => state.player);
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
 
   const { data, isFetching, error } = useGetTopTracksQuery();
 
@@ -40,7 +37,14 @@ const Discover = () => {
 
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
         {data?.map((track, i) => (
-          <SongCard key={track.id} song={track} isPlaying={isPlaying} activeSong={activeSong} data={data} i={i} />
+          <SongCard
+            key={track.id}
+            song={track}
+            i={i}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            data={data.items}
+          />
         ))}
       </div>
     </div>

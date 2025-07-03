@@ -8,13 +8,12 @@ export const loginEndpoint = `https://accounts.spotify.com/authorize?client_id=$
 
 
 
-// redux/services/spotify.js
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const spotifyApi = createApi({
   reducerPath: 'spotifyApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://your-backend-url.onrender.com/api', // your backend
+    baseUrl: 'https://musify-vmr4.onrender.com/api',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('spotify_access_token');
       if (token) headers.set('Authorization', `Bearer ${token}`);
@@ -23,7 +22,7 @@ export const spotifyApi = createApi({
   }),
   endpoints: (builder) => ({
     getTopTracks: builder.query({
-      query: () => 'top-tracks', // this route should call Spotify's /v1/me/top/tracks
+      query: () => 'top-tracks',
     }),
   }),
 });
