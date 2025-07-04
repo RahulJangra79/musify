@@ -155,7 +155,7 @@ const TopPlay = () => {
             // </SwiperSlide>
             <SwiperSlide
               key={artist?.id}
-              className="w-24 h-24 shadow-lg rounded-full animate-slideright overflow-hidden flex items-center justify-center"
+              className="w-24 h-24 flex items-center justify-center rounded-full overflow-hidden shadow-lg animate-slideright"
             >
               <Link to={`/artists/${artist.id}`}>
                 <img
