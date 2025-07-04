@@ -142,7 +142,7 @@ const TopPlay = () => {
           {topArtists?.items?.slice(0, 10).map((artist) => (
             <SwiperSlide
               key={artist?.id}
-              style={{ width: "25%", height: "auto" }}
+              style={{ width: "25%", height: "25%" }}
               className="shadow-lg rounded-full animate-slideright"
             >
               <Link to={`/artists/${artist.id}`}>
