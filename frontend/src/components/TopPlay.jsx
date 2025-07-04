@@ -7,7 +7,7 @@ import { FreeMode } from "swiper";
 
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
-import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import { useGetTopTracksQuery } from "../redux/services/spotify";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -54,7 +54,7 @@ const TopChartCard = ({
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data } = useGetTopChartsQuery();
+  const { data } = useGetTopTracksQuery();
   const divRef = useRef(null);
 
   useEffect(() => {
