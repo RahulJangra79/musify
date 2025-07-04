@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import { FreeMode } from "swiper";
-import { FreeMode } from 'swiper/modules';
+import { FreeMode } from "swiper/modules";
 
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
@@ -30,15 +30,15 @@ const TopChartCard = ({
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
         className="w-20 h-20 rounded-lg"
-        src={song?.images?.coverart}
+        src={song?.album?.images?.[0]?.url}
         alt={song?.name}
       />
       <div className="flex-1 flex flex-col justify-center mx-3">
         <Link to={`/songs/${song.id}`}>
           <p className="text-xl font-bold text-white">{song?.name}</p>
         </Link>
-        <Link to={`/artists/${song?.artists[0].adamid}`}>
-          <p className="text-base text-gray-300 mt-1">{song?.subtitle}</p>
+        <Link to={`/artists/${song?.artists[0]?.id}`}>
+          <p className="text-base text-gray-300 mt-1">{song?.artists?.[0]?.name}</p>
         </Link>
       </div>
     </div>
@@ -74,16 +74,16 @@ const TopPlay = () => {
   // };
 
   const handlePlayClick = (song, i) => {
-    const playable = song?.hub?.actions?.[1]?.uri;
-    if (!playable) return; // prevents breaking the player if audio is unavailable
+    const playable = song?.preview_url;
+    if (!playable) return;
 
     dispatch(
       setActiveSong(
         {
           ...song,
-          title: song.title || song.name,
-          subtitle: song.subtitle,
-          images: { coverart: song?.images?.coverart },
+          title: song.name,
+          subtitle: song.artists?.[0]?.name,
+          images: { coverart: song.album?.images?.[0]?.url },
           hub: { actions: [{}, { uri: playable }] },
         },
         data,
@@ -109,7 +109,7 @@ const TopPlay = () => {
         <div className="mt-4 flex flex-col gap-1">
           {topPlays?.map((song, i) => (
             <TopChartCard
-              key={song.id}
+              key={song?.id || `${i}-${song?.name}`}
               song={song}
               i={i}
               isPlaying={isPlaying}
