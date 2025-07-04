@@ -131,6 +131,54 @@ app.get("/api/top-artists", async (req, res) => {
   }
 });
 
+app.get("/api/tracks/:id", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  const { id } = req.params;
+
+  try {
+    const { data } = await axios.get(
+      `https://api.spotify.com/v1/tracks/${id}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    res.json(data);
+  } catch (error) {
+    console.error(
+      "Track details error:",
+      error.response?.data || error.message
+    );
+    res
+      .status(error.response?.status || 400)
+      .json({ error: "Failed to fetch track details" });
+  }
+});
+
+app.get("/api/recommendations", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  const seedTrack = req.query.seed_tracks;
+
+  try {
+    const { data } = await axios.get(
+      `https://api.spotify.com/v1/recommendations?seed_tracks=${seedTrack}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    res.json(data);
+  } catch (error) {
+    console.error(
+      "Recommendations error:",
+      error.response?.data || error.message
+    );
+    res
+      .status(error.response?.status || 400)
+      .json({ error: "Failed to fetch recommendations" });
+  }
+});
+
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
