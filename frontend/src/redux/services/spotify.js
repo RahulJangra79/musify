@@ -33,8 +33,14 @@ export const spotifyApi = createApi({
     getSavedTracks: builder.query({
       query: () => "saved-tracks",
     }),
+    getTopArtists: builder.query({
+      query: () => 'top-artists',
+    }),
+
   }),
 });
+
+export const { useGetTopArtistsQuery } = spotifyApi;
 export const { useGetRecentlyPlayedQuery } = spotifyApi;
 export const { useGetSavedTracksQuery } = spotifyApi;
 export const { useGetTopTracksQuery } = spotifyApi;

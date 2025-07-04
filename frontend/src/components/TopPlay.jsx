@@ -8,7 +8,10 @@ import { FreeMode } from "swiper/modules";
 
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
-import { useGetTopTracksQuery } from "../redux/services/spotify";
+import {
+  useGetTopTracksQuery,
+  useGetTopArtistsQuery,
+} from "../redux/services/spotify";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -64,16 +67,12 @@ const TopPlay = () => {
     divRef.current.scrollIntoView({ behavior: "smooth" });
   });
 
-  const topPlays = data?.items?.slice(0, 5);
+  const { data: topTracks } = useGetTopTracksQuery();
+  const { data: topArtists } = useGetTopArtistsQuery();
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
-
-  // const handlePlayClick = (song, i) => {
-  //   dispatch(setActiveSong({ song, data, i }));
-  //   dispatch(playPause(true));
-  // };
 
   const handlePlayClick = (song, i) => {
     const playable = song?.preview_url;
@@ -109,7 +108,7 @@ const TopPlay = () => {
         </div>
 
         <div className="mt-4 flex flex-col gap-1">
-          {topPlays?.map((song, i) => (
+          {topTracks?.items?.slice(0, 5).map((song, i) => (
             <TopChartCard
               key={song?.id || `${i}-${song?.name}`}
               song={song}
@@ -140,16 +139,16 @@ const TopPlay = () => {
           modules={[FreeMode]}
           className="mt-4"
         >
-          {topPlays?.slice(0, 5).map((artist) => (
+          {topArtists?.items?.slice(0, 10).map((artist) => (
             <SwiperSlide
               key={artist?.id}
               style={{ width: "25%", height: "auto" }}
               className="shadow-lg rounded-full animate-slideright"
             >
-              <Link to={`/artists/${artist?.artists[0].id}`}>
+              <Link to={`/artists/${artist.id}`}>
                 <img
-                  src={artist?.album?.images?.[0]?.url}
-                  alt={artist?.artists?.[0]?.name}
+                  src={artist?.images?.[0]?.url}
+                  alt={artist?.name}
                   className="rounded-full w-full object-cover"
                 />
               </Link>

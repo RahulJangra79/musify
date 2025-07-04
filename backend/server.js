@@ -20,14 +20,20 @@ app.post("/api/get-token", async (req, res) => {
     params.append("code", code);
     params.append("redirect_uri", process.env.REDIRECT_URI);
 
-    const authHeader = Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`).toString("base64");
+    const authHeader = Buffer.from(
+      `${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`
+    ).toString("base64");
 
-    const response = await axios.post("https://accounts.spotify.com/api/token", params, {
-      headers: {
-        Authorization: `Basic ${authHeader}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    });
+    const response = await axios.post(
+      "https://accounts.spotify.com/api/token",
+      params,
+      {
+        headers: {
+          Authorization: `Basic ${authHeader}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
 
     res.json(response.data);
   } catch (error) {
@@ -44,11 +50,14 @@ app.get("/api/top-tracks", async (req, res) => {
   if (!token) return res.status(401).json({ error: "Missing access token" });
 
   try {
-    const response = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(
+      "https://api.spotify.com/v1/me/top/tracks",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     res.json(response.data);
   } catch (error) {
@@ -61,15 +70,21 @@ app.get("/api/recently-played", async (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   try {
-    const { data } = await axios.get("https://api.spotify.com/v1/me/player/recently-played?limit=20", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/me/player/recently-played?limit=20",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     res.json(data);
   } catch (error) {
-    console.error("Recently played error:", error.response?.data || error.message);
+    console.error(
+      "Recently played error:",
+      error.response?.data || error.message
+    );
     res.status(400).json({ error: "Failed to fetch recently played tracks" });
   }
 });
@@ -78,11 +93,14 @@ app.get("/api/saved-tracks", async (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   try {
-    const { data } = await axios.get("https://api.spotify.com/v1/me/tracks?limit=20", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/me/tracks?limit=20",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     res.json(data);
   } catch (error) {
@@ -91,6 +109,28 @@ app.get("/api/saved-tracks", async (req, res) => {
   }
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+app.get("/api/top-artists", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+
+  try {
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/me/top/artists?limit=10",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    res.json(data);
+  } catch (error) {
+    console.error("Top artists error:", error.response?.data || error.message);
+    res
+      .status(error.response?.status || 400)
+      .json({ error: "Failed to fetch top artists" });
+  }
+});
+
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
