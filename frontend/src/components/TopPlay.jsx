@@ -142,14 +142,14 @@ const TopPlay = () => {
         >
           {topPlays?.slice(0, 5).map((artist) => (
             <SwiperSlide
-              key={artist?.key}
+              key={artist?.id}
               style={{ width: "25%", height: "auto" }}
               className="shadow-lg rounded-full animate-slideright"
             >
-              <Link to={`/artists/${artist?.artists[0].adamid}`}>
+              <Link to={`/artists/${artist?.artists[0].id}`}>
                 <img
-                  src={artist?.images?.background}
-                  alt="Name"
+                  src={artist?.album?.images?.[0]?.url}
+                  alt={artist?.artists?.[0]?.name}
                   className="rounded-full w-full object-cover"
                 />
               </Link>
