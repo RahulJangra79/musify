@@ -38,7 +38,9 @@ const TopChartCard = ({
           <p className="text-xl font-bold text-white">{song?.name}</p>
         </Link>
         <Link to={`/artists/${song?.artists[0]?.id}`}>
-          <p className="text-base text-gray-300 mt-1">{song?.artists?.[0]?.name}</p>
+          <p className="text-base text-gray-300 mt-1">
+            {song?.artists?.[0]?.name}
+          </p>
         </Link>
       </div>
     </div>
@@ -62,7 +64,7 @@ const TopPlay = () => {
     divRef.current.scrollIntoView({ behavior: "smooth" });
   });
 
-  const topPlays = data?.slice(0, 5);
+  const topPlays = data?.items?.slice(0, 5);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
