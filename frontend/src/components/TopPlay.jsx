@@ -140,16 +140,28 @@ const TopPlay = () => {
           className="mt-4"
         >
           {topArtists?.items?.slice(0, 10).map((artist) => (
+            // <SwiperSlide
+            //   key={artist?.id}
+            //   style={{ width: "25%", height: "25%" }}
+            //   className="shadow-lg rounded-full animate-slideright"
+            // >
+            //   <Link to={`/artists/${artist.id}`}>
+            //     <img
+            //       src={artist?.images?.[0]?.url}
+            //       alt={artist?.name}
+            //       className="rounded-full w-full object-cover"
+            //     />
+            //   </Link>
+            // </SwiperSlide>
             <SwiperSlide
               key={artist?.id}
-              style={{ width: "25%", height: "25%" }}
-              className="shadow-lg rounded-full animate-slideright"
+              className="w-24 h-24 shadow-lg rounded-full animate-slideright overflow-hidden flex items-center justify-center"
             >
               <Link to={`/artists/${artist.id}`}>
                 <img
                   src={artist?.images?.[0]?.url}
                   alt={artist?.name}
-                  className="rounded-full w-full object-cover"
+                  className="w-full h-full object-cover rounded-full"
                 />
               </Link>
             </SwiperSlide>
