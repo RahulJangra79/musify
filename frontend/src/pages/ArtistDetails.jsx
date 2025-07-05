@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { DetailsHeader, Error, Loader, RelatedSongs } from '../components';
 import {   useGetArtistDetailsQuery,
-  useGetArtistTopTracksQuery} from '../redux/services/spotifyAPI';
+  useGetArtistTopTracksQuery} from '../redux/services/spotify';
 
 const ArtistDetails = () => {
   const { id: artistId } = useParams();
