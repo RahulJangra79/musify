@@ -29,7 +29,7 @@ const TopChartCard = ({
       activeSong?.name === song?.name ? "bg-[#4c426e]" : "bg-transparent"
     } py-2 p-4 rounded-lg cursor-pointer mb-2`}
   >
-    <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3>
+    {/* <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3> */}
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
         className="w-20 h-20 rounded-lg"
