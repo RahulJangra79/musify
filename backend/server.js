@@ -179,6 +179,59 @@ app.get("/api/recommendations", async (req, res) => {
   }
 });
 
+app.get("/api/artists/:id", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  const { id } = req.params;
+
+  if (!token) return res.status(401).json({ error: "Missing access token" });
+
+  try {
+    const { data } = await axios.get(
+      `https://api.spotify.com/v1/artists/${id}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    res.json(data);
+  } catch (error) {
+    console.error(
+      "Artist details error:",
+      error.response?.data || error.message
+    );
+    res
+      .status(error.response?.status || 400)
+      .json({ error: "Failed to fetch artist details" });
+  }
+});
+
+app.get("/api/artists/:id/top-tracks", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  const { id } = req.params;
+  const market = req.query.market || "IN"; // Default to India
+
+  if (!token) return res.status(401).json({ error: "Missing access token" });
+
+  try {
+    const { data } = await axios.get(
+      `https://api.spotify.com/v1/artists/${id}/top-tracks?market=${market}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    res.json(data);
+  } catch (error) {
+    console.error(
+      "Artist top tracks error:",
+      error.response?.data || error.message
+    );
+    res
+      .status(error.response?.status || 400)
+      .json({ error: "Failed to fetch artist's top tracks" });
+  }
+});
+
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });

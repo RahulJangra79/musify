@@ -42,12 +42,22 @@ export const spotifyApi = createApi({
     getRecommendations: builder.query({
       query: (id) => `recommendations?seed_tracks=${id}`,
     }),
+    getArtistDetails: builder.query({
+      query: (id) => `artists/${id}`,
+    }),
+    getArtistTopTracks: builder.query({
+      query: (id) => `artists/${id}/top-tracks?market=IN`,
+    }),
   }),
 });
 
-export const { useGetTrackDetailsQuery } = spotifyApi;
-export const { useGetRecommendationsQuery } = spotifyApi;
-export const { useGetTopArtistsQuery } = spotifyApi;
-export const { useGetRecentlyPlayedQuery } = spotifyApi;
-export const { useGetSavedTracksQuery } = spotifyApi;
-export const { useGetTopTracksQuery } = spotifyApi;
+export const {
+  useGetTrackDetailsQuery,
+  useGetRecommendationsQuery,
+  useGetTopArtistsQuery,
+  useGetRecentlyPlayedQuery,
+  useGetSavedTracksQuery,
+  useGetTopTracksQuery,
+  useGetArtistDetailsQuery,
+  useGetArtistTopTracksQuery,
+} = spotifyApi;
