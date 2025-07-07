@@ -48,6 +48,9 @@ export const spotifyApi = createApi({
     getArtistTopTracks: builder.query({
       query: (id) => `artists/${id}/top-tracks?market=IN`,
     }),
+    searchTracks: builder.query({
+      query: (searchTerm) => `search?q=${searchTerm}&type=track&limit=20`,
+    }),
   }),
 });
 
