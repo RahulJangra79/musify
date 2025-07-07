@@ -155,35 +155,6 @@ app.get("/api/tracks/:id", async (req, res) => {
   }
 });
 
-// app.get("/api/recommendations", async (req, res) => {
-//   const token = req.headers.authorization?.split(" ")[1];
-//   const seedTrack = req.query.seed_tracks;
-
-//   if (!token || !seedTrack) {
-//     return res
-//       .status(400)
-//       .json({ error: "Missing token or seed_tracks parameter" });
-//   }
-
-//   try {
-//     const response = await axios.get(
-//       `https://api.spotify.com/v1/recommendations?seed_tracks=${seedTrack}&market=IN`,
-//       {
-//         headers: { Authorization: `Bearer ${token}` },
-//       }
-//     );
-//     res.json(response.data);
-//   } catch (error) {
-//     console.error(
-//       "🔁 Recommendations error:",
-//       error.response?.data || error.message
-//     );
-//     res
-//       .status(error.response?.status || 500)
-//       .json({ error: "Failed to fetch recommendations from Spotify" });
-//   }
-// });
-
 app.get("/api/recommendations", async (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   const seedTrack = req.query.seed_tracks;
