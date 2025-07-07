@@ -102,8 +102,6 @@ const SongDetails = () => {
       skip: !songid,
     });
 
-  console.log("🔁 Recommendations:", relatedData);
-
   if (isFetchingSongDetails || isFetchingRelatedSongs) {
     return <Loader title="Searching song details" />;
   }

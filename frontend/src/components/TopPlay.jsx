@@ -147,7 +147,7 @@ const TopPlay = () => {
                 <img
                   src={artist?.images?.[0]?.url}
                   alt={artist?.name}
-                  className="rounded-full w-full object-cover"
+                  className="rounded-full w-[120px] h-[120px] mx-auto object-cover"
                 />
               </Link>
             </SwiperSlide>
