@@ -2,7 +2,7 @@ import React from 'react';
 import SongBar from './SongBar';
 
 const RelatedSongs = ({
-  data,           // Array of Spotify track objects
+  data,
   artistId,
   isPlaying,
   activeSong,
@@ -15,8 +15,8 @@ const RelatedSongs = ({
     <div className="mt-6 w-full flex flex-col">
       {data?.map((track, i) => (
         <SongBar
-          key={`${artistId}-${track.id}-${i}`}       // Spotify uses `id` instead of `key`
-          song={track}                                // Directly pass Spotify's track object
+          key={`${artistId}-${track.id}-${i}`}
+          song={track}
           i={i}
           artistId={artistId}
           isPlaying={isPlaying}

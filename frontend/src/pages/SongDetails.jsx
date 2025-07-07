@@ -19,8 +19,10 @@ const SongDetails = () => {
     isFetching: isFetchingSongDetails,
     error,
   } = useGetTrackDetailsQuery(songid);
+  console.log('🎵 Song Data:', songData);
   const { data: relatedData, isFetching: isFetchinRelatedSongs } =
     useGetRecommendationsQuery(songid);
+    console.log('🔁 Recommendations:', relatedData);
 
   if (isFetchingSongDetails || isFetchinRelatedSongs) {
     return <Loader title="Searching song details" />;
