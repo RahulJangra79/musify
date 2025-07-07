@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ArtistCard = ({ track }) => {
   const navigate = useNavigate();
@@ -15,7 +15,9 @@ const ArtistCard = ({ track }) => {
         className="w-full h-56 rounded-lg"
       />
       <p className="mt-4 font-semibold text-lg text-white truncate">
-        {track?.name}
+        {/* {track?.name} */}
+        <Link to={`/artists/${track?.id}`}>{track?.name}</Link>
+
       </p>
     </div>
   );
