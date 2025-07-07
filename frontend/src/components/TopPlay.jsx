@@ -132,8 +132,8 @@ const TopPlay = () => {
           slidesPerView="auto"
           spaceBetween={15}
           freeMode
-          centeredSlides
-          centeredSlidesBounds
+          // centeredSlides
+          // centeredSlidesBounds
           modules={[FreeMode]}
           className="mt-4"
         >
