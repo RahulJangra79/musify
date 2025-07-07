@@ -155,53 +155,27 @@ app.get("/api/tracks/:id", async (req, res) => {
   }
 });
 
-// app.get("/api/recommendations", async (req, res) => {
-//   const token = req.headers.authorization?.split(" ")[1];
-//   const seedTrack = req.query.seed_tracks;
-
-//   try {
-//     const { data } = await axios.get(
-//       `https://api.spotify.com/v1/recommendations?seed_tracks=${seedTrack}`,
-//       {
-//         headers: { Authorization: `Bearer ${token}` },
-//       }
-//     );
-
-//     res.json(data);
-//   } catch (error) {
-//     console.error(
-//       "Recommendations error:",
-//       error.response?.data || error.message
-//     );
-//     res
-//       .status(error.response?.status || 400)
-//       .json({ error: "Failed to fetch recommendations" });
-//   }
-// });
-
 app.get("/api/recommendations", async (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   const seedTrack = req.query.seed_tracks;
 
-  if (!token) return res.status(401).json({ error: "Missing access token" });
+  if (!token || !seedTrack) {
+    return res.status(400).json({ error: "Missing token or seed_tracks parameter" });
+  }
 
   try {
-    const { data } = await axios.get(
+    const response = await axios.get(
       `https://api.spotify.com/v1/recommendations?seed_tracks=${seedTrack}&market=IN`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-
-    res.json(data);
+    res.json(response.data);
   } catch (error) {
-    console.error(
-      "Recommendations error:",
-      error.response?.data || error.message
-    );
+    console.error("🔁 Recommendations error:", error.response?.data || error.message);
     res
-      .status(error.response?.status || 400)
-      .json({ error: "Failed to fetch recommendations" });
+      .status(error.response?.status || 500)
+      .json({ error: "Failed to fetch recommendations from Spotify" });
   }
 });
 
