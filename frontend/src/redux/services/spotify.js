@@ -63,4 +63,5 @@ export const {
   useGetTopTracksQuery,
   useGetArtistDetailsQuery,
   useGetArtistTopTracksQuery,
+  useSearchTracksQuery,
 } = spotifyApi;
