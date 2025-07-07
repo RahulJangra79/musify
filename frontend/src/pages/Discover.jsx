@@ -33,7 +33,7 @@ const Discover = () => {
   const genreTitle = genres.find(({ value }) => value === genreListId)?.title || "Vibes";
 
   if (fetchingTop || fetchingRecent || fetchingSaved)
-    return <Loader title="Loading your Spotify vibes..." />;
+    return <Loader title="Loading your vibes..." />;
   if (errorTop || errorRecent || errorSaved) return <Error />;
 
   return (
