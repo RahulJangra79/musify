@@ -72,18 +72,13 @@
 
 // export default SongDetails;
 
-
-
-
-
-
-
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
 
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
+
 import {
   useGetTrackDetailsQuery,
   useGetRecommendationsQuery,
@@ -102,12 +97,12 @@ const SongDetails = () => {
     skip: !songid,
   });
 
-  const {
-    data: relatedData,
-    isFetching: isFetchingRelatedSongs,
-  } = useGetRecommendationsQuery(songid, {
-    skip: !songid,
-  });
+  const { data: relatedData, isFetching: isFetchingRelatedSongs } =
+    useGetRecommendationsQuery(songid, {
+      skip: !songid,
+    });
+
+  useG;
 
   console.log("🎵 Song Data:", songData);
   console.log("🔁 Recommendations:", relatedData);
@@ -149,7 +144,9 @@ const SongDetails = () => {
 
       <div className="mb-10">
         <h2 className="text-white text-3xl font-bold">Lyrics:</h2>
-        <p className="text-base text-gray-400 mt-2">Lyrics not available via Spotify API.</p>
+        <p className="text-base text-gray-400 mt-2">
+          Lyrics not available via Spotify API.
+        </p>
       </div>
 
       <RelatedSongs
