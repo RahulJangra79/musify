@@ -1,21 +1,19 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { Error, Loader, SongCard } from '../components';
 import { useGetTopTracksQuery } from '../redux/services/spotify';
 
 const CountryTracks = () => {
-  const country = 'IN';
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetTopTracksQuery();
 
-  if (isFetching) return <Loader title={`Loading Songs around ${country}...`} />;
+  if (isFetching) return <Loader title="Loading songs around you" />;
   if (error) return <Error />;
 
   return (
     <div className="flex flex-col">
       <h2 className="font-bold text-3xl text-white text-left mt-4 mb-10">
-        Around you <span className="font-black">{country}</span>
+        Discover Around you
       </h2>
 
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">

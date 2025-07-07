@@ -145,7 +145,7 @@ const SongDetails = () => {
       <div className="mb-10">
         <h2 className="text-white text-3xl font-bold">Lyrics:</h2>
         <p className="text-base text-gray-400 mt-2">
-          Lyrics not available via Spotify API.
+          Sorry, Lyrics not available.
         </p>
       </div>
 
