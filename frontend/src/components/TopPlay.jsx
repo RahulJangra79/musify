@@ -132,38 +132,23 @@ const TopPlay = () => {
           slidesPerView="auto"
           spaceBetween={15}
           freeMode
-          // centeredSlides
-          // centeredSlidesBounds
+          centeredSlides
+          centeredSlidesBounds
           modules={[FreeMode]}
           className="mt-4"
         >
           {topArtists?.items?.slice(0, 10).map((artist) => (
-            // <SwiperSlide
-            //   key={artist?.id}
-            //   style={{ width: "25%", height: "150px" }}
-            //   className="shadow-lg rounded-full animate-slideright"
-            // >
-            //   <Link to={`/artists/${artist.id}`}>
-            //     <img
-            //       src={artist?.images?.[0]?.url}
-            //       alt={artist?.name}
-            //       className="rounded-full w-[120px] h-[120px] mx-auto object-cover"
-            //     />
-            //   </Link>
-            // </SwiperSlide>
             <SwiperSlide
               key={artist?.id}
-              style={{ width: "120px", height: "120px" }}
-              className="flex items-center justify-center animate-slideright"
+              style={{ width: "25%", height: "150px" }}
+              className="shadow-lg rounded-full animate-slideright"
             >
               <Link to={`/artists/${artist.id}`}>
-                <div className="w-[120px] h-[120px] shadow-lg rounded-full overflow-hidden bg-black">
-                  <img
-                    src={artist?.images?.[0]?.url}
-                    alt={artist?.name}
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                </div>
+                <img
+                  src={artist?.images?.[0]?.url}
+                  alt={artist?.name}
+                  className="w-[120px] h-[120px] object-cover object-top rounded-full mx-auto"
+                />
               </Link>
             </SwiperSlide>
           ))}
