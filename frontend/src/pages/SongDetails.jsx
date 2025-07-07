@@ -102,9 +102,6 @@ const SongDetails = () => {
       skip: !songid,
     });
 
-  useG;
-
-  console.log("🎵 Song Data:", songData);
   console.log("🔁 Recommendations:", relatedData);
 
   if (isFetchingSongDetails || isFetchingRelatedSongs) {

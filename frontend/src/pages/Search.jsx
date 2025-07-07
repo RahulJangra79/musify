@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { Error, Loader, SongCard } from '../components';
-import { useSearchTracksQuery } from '../redux/services/spotify'; // Updated import
+import { useSearchTracksQuery } from '../redux/services/spotify';
 
 const Search = () => {
   const { searchTerm } = useParams();
@@ -13,9 +13,8 @@ const Search = () => {
     data,
     isFetching,
     error,
-  } = useSearchTracksQuery(searchTerm); // Spotify-based query
-
-  const songs = data?.tracks?.items || []; // Spotify returns songs under tracks.items
+  } = useSearchTracksQuery(searchTerm);
+  const songs = data?.tracks?.items || [];
 
   if (isFetching) return <Loader title={`Searching "${searchTerm}"...`} />;
   if (error) return <Error />;

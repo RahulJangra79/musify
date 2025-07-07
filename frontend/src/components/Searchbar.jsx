@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 
@@ -31,7 +31,7 @@ const Searchbar = () => {
           autoComplete="off"
           id="search-field"
           className="flex-1 bg-transparent border-none placeholder-gray-500 outline-none text-base text-white p-4"
-          placeholder="Search songs or artists"
+          placeholder="What do you want to play?"
           type="search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}

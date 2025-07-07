@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const DetailsHeader = ({ artistId, artistData, songData }) => (
   <div className="relative w-full flex flex-col">
@@ -9,8 +9,8 @@ const DetailsHeader = ({ artistId, artistData, songData }) => (
         alt="profile"
         src={
           artistId
-            ? artistData?.images?.[0]?.url  // Spotify artist image
-            : songData?.album?.images?.[0]?.url // Track's album cover
+            ? artistData?.images?.[0]?.url
+            : songData?.album?.images?.[0]?.url
         }
         className="sm:w-48 w-28 sm:h-48 h-28 rounded-full object-cover border-2 shadow-xl shadow-black"
       />
@@ -22,14 +22,16 @@ const DetailsHeader = ({ artistId, artistData, songData }) => (
 
         {!artistId && (
           <Link to={`/artists/${songData?.artists?.[0]?.id}`}>
-            <p className="text-base text-gray-400 mt-2">{songData?.artists?.[0]?.name}</p>
+            <p className="text-base text-gray-400 mt-2">
+              {songData?.artists?.[0]?.name}
+            </p>
           </Link>
         )}
 
         <p className="text-base text-gray-400 mt-2">
           {artistId
-            ? artistData?.genres?.[0]  // Spotify returns an array of genres
-            : songData?.album?.release_date?.split('-')[0]} {/* Fallback to release year */}
+            ? artistData?.genres?.[0]
+            : songData?.album?.release_date?.split("-")[0]}
         </p>
       </div>
     </div>
