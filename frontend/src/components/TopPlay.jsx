@@ -26,7 +26,7 @@ const TopChartCard = ({
   <div
     className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${
       activeSong?.name === song?.name ? "bg-[#4c426e]" : "bg-transparent"
-    } py-2 rounded-lg cursor-pointer`}
+    } p-2 rounded-lg cursor-pointer`}
   >
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
@@ -147,7 +147,7 @@ const TopPlay = () => {
                 <img
                   src={artist?.images?.[0]?.url}
                   alt={artist?.name}
-                  className="rounded-full w-[120px] h-[120px] sm:h-[100px] mx-auto object-cover"
+                  className="rounded-full w-[120px] h-[120px] mx-auto object-cover"
                 />
               </Link>
             </SwiperSlide>
