@@ -1,5 +1,4 @@
-/* eslint-disable import/no-unresolved */
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -47,13 +46,15 @@ const TopChartCard = ({
         </Link>
       </div>
     </div>
-    <PlayPause
-      isPlaying={isPlaying}
-      activeSong={activeSong}
-      song={song}
-      handlePause={handlePauseClick}
-      handlePlay={handlePlayClick}
-    />
+    {song?.preview_url && (
+      <PlayPause
+        isPlaying={isPlaying}
+        activeSong={activeSong}
+        song={song}
+        handlePause={handlePauseClick}
+        handlePlay={() => handlePlayClick(song, i)}
+      />
+    )}
   </div>
 );
 
@@ -110,17 +111,20 @@ const TopPlay = () => {
         </div>
 
         <div className="mt-4 flex flex-col gap-1">
-          {topTracks?.items?.slice(0, 5).map((song, i) => (
-            <TopChartCard
-              key={song?.id || `${i}-${song?.name}`}
-              song={song}
-              i={i}
-              isPlaying={isPlaying}
-              activeSong={activeSong}
-              handlePauseClick={handlePauseClick}
-              handlePlayClick={() => handlePlayClick(song, i)}
-            />
-          ))}
+          {topTracks?.items
+            ?.filter((song) => song.preview_url)
+            ?.slice(0, 5)
+            .map((song, i) => (
+              <TopChartCard
+                key={song?.id || `${i}-${song?.name}`}
+                song={song}
+                i={i}
+                isPlaying={isPlaying}
+                activeSong={activeSong}
+                handlePauseClick={handlePauseClick}
+                handlePlayClick={handlePlayClick}
+              />
+            ))}
         </div>
       </div>
 
