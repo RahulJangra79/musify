@@ -26,7 +26,7 @@ const TopChartCard = ({
   <div
     className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${
       activeSong?.name === song?.name ? "bg-[#4c426e]" : "bg-transparent"
-    } py-2 p-4 rounded-lg cursor-pointer mb-2`}
+    } py-2 rounded-lg cursor-pointer`}
   >
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
@@ -36,7 +36,7 @@ const TopChartCard = ({
       />
       <div className="flex-1 flex flex-col justify-center mx-3">
         <Link to={`/songs/${song.id}`}>
-          <p className="text-lg font-bold text-white">{song?.name}</p>
+          <p className="text-lg sm:text-md font-bold text-white">{song?.name}</p>
         </Link>
         <Link to={`/artists/${song?.artists[0]?.id}`}>
           <p className="text-base text-gray-300 mt-1">
@@ -99,7 +99,7 @@ const TopPlay = () => {
     >
       <div className="w-full flex flex-col">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold text-2xl">Top Charts</h2>
+          <h2 className="text-white font-bold text-2xl sm:text-xl">Top Charts</h2>
           <Link to="/top-charts">
             <p className="text-gray-300 text-base cursor-pointer">See more</p>
           </Link>
@@ -122,7 +122,7 @@ const TopPlay = () => {
 
       <div className="w-full flex flex-col mt-8">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold text-2xl">Top Artists</h2>
+          <h2 className="text-white font-bold text-2xl sm:text-xl">Top Artists</h2>
           <Link to="/top-artists">
             <p className="text-gray-300 text-base cursor-pointer">See more</p>
           </Link>
@@ -140,14 +140,14 @@ const TopPlay = () => {
           {topArtists?.items?.slice(0, 10).map((artist) => (
             <SwiperSlide
               key={artist?.id}
-              style={{ width: "25%", height: "150px" }}
+              style={{ width: "25%", height: "auto" }}
               className="rounded-full animate-slideright"
             >
               <Link to={`/artists/${artist.id}`}>
                 <img
                   src={artist?.images?.[0]?.url}
                   alt={artist?.name}
-                  className="rounded-full w-[120px] h-[120px] mx-auto object-cover"
+                  className="rounded-full w-[120px] h-[120px] sm:h-[100px] mx-auto object-cover"
                 />
               </Link>
             </SwiperSlide>
