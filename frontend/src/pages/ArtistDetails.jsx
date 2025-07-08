@@ -30,7 +30,8 @@ const ArtistDetails = () => {
   const handlePlayClick = (song, i) => {
     dispatch(
       setActiveSong({
-        song: {
+        song: 
+        {
           ...song,
           title: song.name,
           subtitle: song.artists?.[0]?.name,
