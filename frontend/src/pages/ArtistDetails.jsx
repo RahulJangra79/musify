@@ -5,7 +5,7 @@ import {
   useGetArtistDetailsQuery,
   useGetArtistTopTracksQuery,
 } from "../redux/services/spotify";
-import { setActiveSong } from "../redux/features/playerSlice";
+import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
 const ArtistDetails = () => {
   const dispatch = useDispatch();
