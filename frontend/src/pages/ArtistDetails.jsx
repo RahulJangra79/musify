@@ -10,6 +10,27 @@ const ArtistDetails = () => {
   const { id: artistId } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
+  const handlePauseClick = () => {
+    dispatch(playPause(false));
+  };
+
+  const handlePlayClick = (song, i) => {
+    dispatch(
+      setActiveSong({
+        song: {
+          ...song,
+          title: song.name,
+          subtitle: song.artists?.[0]?.name,
+          images: { coverart: song.album?.images?.[0]?.url },
+          hub: { actions: [{}, { uri: song.preview_url || "" }] },
+        },
+        data: topTracksData.tracks,
+        i,
+      })
+    );
+    dispatch(playPause(true));
+  };
+
   const {
     data: artistData,
     isFetching: isFetchingArtistDetails,
@@ -32,16 +53,15 @@ const ArtistDetails = () => {
 
   return (
     <div className="flex flex-col">
-      <DetailsHeader 
-      artistId={artistId} 
-      artistData={artistData} 
-      />
+      <DetailsHeader artistId={artistId} artistData={artistData} />
 
       <RelatedSongs
         data={topTracksData?.tracks}
         artistId={artistId}
         isPlaying={isPlaying}
         activeSong={activeSong}
+        handlePauseClick={handlePauseClick}
+        handlePlayClick={handlePlayClick}
       />
     </div>
   );
