@@ -86,7 +86,6 @@ const SongBar = ({
         </div>
       </div>
 
-      {song?.preview_url && (
         <PlayPause
           isPlaying={isPlaying}
           activeSong={activeSong}
@@ -94,7 +93,6 @@ const SongBar = ({
           handlePause={handlePauseClick}
           handlePlay={() => handlePlayClick(song, i)}
         />
-      )}
     </div>
   );
 };
