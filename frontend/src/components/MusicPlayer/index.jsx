@@ -28,6 +28,10 @@ const MusicPlayer = () => {
     if (currentSongs.length) dispatch(playPause(true));
   }, [currentIndex]);
 
+  useEffect(() => {
+    console.log("Player activeSong:", activeSong);
+  }, [activeSong]);
+
   const handlePlayPause = () => {
     if (!isActive) return;
 
