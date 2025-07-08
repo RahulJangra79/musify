@@ -36,7 +36,9 @@ const TopChartCard = ({
       />
       <div className="flex-1 flex flex-col justify-center mx-3">
         <Link to={`/songs/${song.id}`}>
-          <p className="text-lg sm:text-md font-bold text-white">{song?.name}</p>
+          <p className="text-lg sm:text-md font-bold text-white">
+            {song?.name}
+          </p>
         </Link>
         <Link to={`/artists/${song?.artists[0]?.id}`}>
           <p className="text-base text-gray-300 mt-1">
@@ -77,17 +79,17 @@ const TopPlay = () => {
     if (!playable) return;
 
     dispatch(
-      setActiveSong(
-        {
+      setActiveSong({
+        song: {
           ...song,
           title: song.name,
           subtitle: song.artists?.[0]?.name,
           images: { coverart: song.album?.images?.[0]?.url },
-          hub: { actions: [{}, { uri: playable }] },
+          hub: { actions: [{}, { uri: song.preview_url }] },
         },
         data,
-        i
-      )
+        i,
+      })
     );
     dispatch(playPause(true));
   };
@@ -99,7 +101,9 @@ const TopPlay = () => {
     >
       <div className="w-full flex flex-col">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold text-2xl sm:text-xl">Top Charts</h2>
+          <h2 className="text-white font-bold text-2xl sm:text-xl">
+            Top Charts
+          </h2>
           <Link to="/top-charts">
             <p className="text-gray-300 text-base cursor-pointer">See more</p>
           </Link>
@@ -122,7 +126,9 @@ const TopPlay = () => {
 
       <div className="w-full flex flex-col mt-8">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold text-2xl sm:text-xl">Top Artists</h2>
+          <h2 className="text-white font-bold text-2xl sm:text-xl">
+            Top Artists
+          </h2>
           <Link to="/top-artists">
             <p className="text-gray-300 text-base cursor-pointer">See more</p>
           </Link>
