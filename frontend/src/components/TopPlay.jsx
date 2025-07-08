@@ -46,7 +46,6 @@ const TopChartCard = ({
         </Link>
       </div>
     </div>
-    {song?.preview_url && (
       <PlayPause
         isPlaying={isPlaying}
         activeSong={activeSong}
@@ -54,7 +53,6 @@ const TopChartCard = ({
         handlePause={handlePauseClick}
         handlePlay={() => handlePlayClick(song, i)}
       />
-    )}
   </div>
 );
 
@@ -76,9 +74,6 @@ const TopPlay = () => {
   };
 
   const handlePlayClick = (song, i) => {
-    const playable = song?.preview_url;
-    if (!playable) return;
-
     dispatch(
       setActiveSong({
         song: {
