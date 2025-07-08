@@ -12,8 +12,8 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
 
   const handlePlayClick = () => {
     dispatch(
-      setActiveSong(
-        {
+      setActiveSong({
+        song: {
           ...song,
           title: song.name,
           subtitle: song.artists?.[0]?.name,
@@ -21,8 +21,8 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
           hub: { actions: [{}, { uri: song.preview_url }] },
         },
         data,
-        i
-      )
+        i,
+      })
     );
 
     dispatch(playPause(true));
@@ -34,11 +34,16 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const artistId = song?.artists?.[0]?.id;
 
   return (
-    <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer" onClick={handlePlayClick}>
+    <div
+      className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
+      onClick={handlePlayClick}
+    >
       <div className="relative w-full h-56 group">
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
-            activeSong?.id === song?.id ? "flex bg-black bg-opacity-70" : "hidden"
+            activeSong?.id === song?.id
+              ? "flex bg-black bg-opacity-70"
+              : "hidden"
           }`}
         >
           <PlayPause
