@@ -7,8 +7,21 @@ import {
 } from "../redux/services/spotify";
 
 const ArtistDetails = () => {
+  const dispatch = useDispatch();
   const { id: artistId } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
+
+  const {
+    data: artistData,
+    isFetching: isFetchingArtistDetails,
+    error: artistError,
+  } = useGetArtistDetailsQuery(artistId);
+
+  const {
+    data: topTracksData,
+    isFetching: isFetchingTopTracks,
+    error: topTracksError,
+  } = useGetArtistTopTracksQuery(artistId);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -24,24 +37,12 @@ const ArtistDetails = () => {
           images: { coverart: song.album?.images?.[0]?.url },
           hub: { actions: [{}, { uri: song.preview_url || "" }] },
         },
-        data: topTracksData.tracks,
+        data: topTracksData?.tracks,
         i,
       })
     );
     dispatch(playPause(true));
   };
-
-  const {
-    data: artistData,
-    isFetching: isFetchingArtistDetails,
-    error: artistError,
-  } = useGetArtistDetailsQuery(artistId);
-
-  const {
-    data: topTracksData,
-    isFetching: isFetchingTopTracks,
-    error: topTracksError,
-  } = useGetArtistTopTracksQuery(artistId);
 
   if (isFetchingArtistDetails || isFetchingTopTracks) {
     return <Loader title="Loading artist details..." />;
