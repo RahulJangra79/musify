@@ -1,4 +1,3 @@
-import React from 'react';
 import { loginEndpoint } from '../../redux/services/spotify';
 
 const Login = () => {
@@ -11,7 +10,7 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-black to-gray-900 p-4">
       <div className="bg-white/10 backdrop-blur-md p-10 rounded-lg shadow-lg text-center">
-        <h1 className="text-4xl text-white font-bold mb-6">Welcome to My Spotify App</h1>
+        <h1 className="text-4xl text-white font-bold mb-6">Welcome to Musify</h1>
         <p className="text-gray-300 mb-8">
           Connect your Spotify account to explore, play, and manage your favorite music.
         </p>

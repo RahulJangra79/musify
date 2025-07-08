@@ -15,16 +15,9 @@ const Callback = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("Token response:", data); // 👈 Add this
-          // if (data?.access_token) {
-          //   localStorage.setItem("spotify_access_token", data.access_token);
-          //   navigate("/");
-          // }
+          // console.log("Token response:", data);
           if (data?.access_token) {
             localStorage.setItem("spotify_access_token", data.access_token);
-            localStorage.setItem("refresh_token", data.refresh_token); 
-            localStorage.setItem("token_timestamp", Date.now()); 
-
             navigate("/");
           } else {
             console.error("No access token returned:", data);

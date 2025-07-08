@@ -42,35 +42,6 @@ app.post("/api/get-token", async (req, res) => {
   }
 });
 
-app.post("/api/refresh-token", async (req, res) => {
-  const refreshToken = req.body.refresh_token;
-
-  const params = new URLSearchParams();
-  params.append("grant_type", "refresh_token");
-  params.append("refresh_token", refreshToken);
-
-  const authHeader = Buffer.from(
-    `${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`
-  ).toString("base64");
-
-  try {
-    const response = await axios.post(
-      "https://accounts.spotify.com/api/token",
-      params,
-      {
-        headers: {
-          Authorization: `Basic ${authHeader}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
-    res.json(response.data);
-  } catch (error) {
-    console.error("Refresh Token Error:", error.response?.data || error.message);
-    res.status(400).json({ error: "Failed to refresh token" });
-  }
-});
-
 app.get("/api/top-tracks", async (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
 
