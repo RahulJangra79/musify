@@ -6,6 +6,8 @@ import {
   HiOutlineMenu,
   HiOutlinePhotograph,
   HiOutlineUserGroup,
+  HiBookmark,
+  HiOutlinePlay,
 } from "react-icons/hi";
 import { RiCloseLine } from "react-icons/ri";
 
@@ -16,6 +18,8 @@ const links = [
   { name: "Around You", to: "/around-you", icon: HiOutlinePhotograph },
   { name: "Top Artists", to: "/top-artists", icon: HiOutlineUserGroup },
   { name: "Top Charts", to: "/top-charts", icon: HiOutlineHashtag },
+  { name: "Recently Played", to: "/recently-played", icon: HiOutlinePlay},
+  { name: "Saved", to: "/saved" , icon: HiBookmark }
 ];
 
 const NavLinks = ({ handleClick }) => (

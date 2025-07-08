@@ -13,6 +13,8 @@ import {
 } from './pages';
 import Login from './components/auth/Login';
 import Callback from './components/auth/callback';
+import SavedSongs from './pages/SavedSongs';
+import RecentlyPlayed from './pages/RecentlyPlayed';
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
@@ -38,6 +40,8 @@ const App = () => {
               <Route path="/top-artists" element={<TopArtists />} />
               <Route path="/top-charts" element={<TopCharts />} />
               <Route path="/around-you" element={<AroundYou />} />
+              <Route path="/saved" element={<SavedSongs />} />
+              <Route path="/recently-played" element={<RecentlyPlayed />} />
               <Route path="/artists/:id" element={<ArtistDetails />} />
               <Route path="/songs/:songid" element={<SongDetails />} />
               <Route path="/search/:searchTerm" element={<Search />} />

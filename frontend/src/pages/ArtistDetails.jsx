@@ -1,8 +1,10 @@
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { DetailsHeader, Error, Loader, RelatedSongs } from '../components';
-import {   useGetArtistDetailsQuery,
-  useGetArtistTopTracksQuery} from '../redux/services/spotify';
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
+import {
+  useGetArtistDetailsQuery,
+  useGetArtistTopTracksQuery,
+} from "../redux/services/spotify";
 
 const ArtistDetails = () => {
   const { id: artistId } = useParams();
@@ -30,7 +32,10 @@ const ArtistDetails = () => {
 
   return (
     <div className="flex flex-col">
-      <DetailsHeader artistId={artistId} artistData={artistData} />
+      <DetailsHeader 
+      artistId={artistId} 
+      artistData={artistData} 
+      />
 
       <RelatedSongs
         data={topTracksData?.tracks}
