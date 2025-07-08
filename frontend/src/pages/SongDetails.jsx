@@ -143,14 +143,6 @@ const SongDetails = () => {
           Sorry, Lyrics not available.
         </p>
       </div>
-
-      <RelatedSongs
-        data={relatedData?.tracks || []}
-        isPlaying={isPlaying}
-        activeSong={activeSong}
-        handlePauseClick={handlePauseClick}
-        handlePlayClick={handlePlayClick}
-      />
     </div>
   );
 };
