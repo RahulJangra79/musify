@@ -15,9 +15,16 @@ const Callback = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          // console.log("Token response:", data);
           if (data?.access_token) {
             localStorage.setItem("spotify_access_token", data.access_token);
+
+            // Delete token after 3600 seconds (1 hour)
+            setTimeout(() => {
+              localStorage.removeItem("spotify_access_token");
+              console.log("Access token expired and removed from localStorage");
+              navigate("/login");
+            }, 3600 * 1000);
+
             navigate("/");
           } else {
             console.error("No access token returned:", data);
