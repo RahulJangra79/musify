@@ -17,8 +17,7 @@ export const genres = [
   { title: 'Blues', value: 'blues' },
   { title: 'Funk', value: 'funk' },
   { title: 'Soul', value: 'soul' },
-  { title: 'Punk', value: 'punk' },
-  { title: 'Trance', value: 'trance' },
-  { title: 'Samba', value: 'samba' },
-  { title: 'alternative', value: 'alternative' },
+  { title: 'Bollywood', value: 'bollywood' },
+  { title: 'Bhangra', value: 'bhangra' },
+
 ];
