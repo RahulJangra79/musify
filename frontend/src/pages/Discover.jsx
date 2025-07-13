@@ -100,7 +100,7 @@ const Discover = () => {
   console.log("🔄 Genre tracks fetching:", isFetchingGenre);
   console.log("❌ Genre track error:", errorGenre);
   console.log("🎵 Genre track response:", genreTracks);
-  
+
   return (
     <div className="flex flex-col gap-12">
       <div className="flex justify-between mt-8">
@@ -108,7 +108,9 @@ const Discover = () => {
           Discover by Genre
         </h2>
         <select
-          onChange={(e) => dispatch(selectGenreListId(e.target.value))}
+          onChange={(e) => {
+            console.log("📦 Genre selected:", e.target.value);
+            dispatch(selectGenreListId(e.target.value))}}
           value={genreListId || ""}
           className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none"
         >
