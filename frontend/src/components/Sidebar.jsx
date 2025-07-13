@@ -43,7 +43,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-[#111111]">
+      <div className="md:flex hidden flex-col w-[200px] py-10 px-4 bg-[#111111]">
         <img src={Musify_Logo} alt="logo" className="w-full h-28 object-contain" />
         <NavLinks />
       </div>

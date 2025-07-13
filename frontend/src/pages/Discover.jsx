@@ -19,7 +19,7 @@ const Discover = () => {
 
       <div>
         <h2 className="text-2xl font-semibold text-white mb-4">Your Top Tracks</h2>
-        <div className="flex flex-wrap gap-8">
+        <div className="flex flex-wrap gap-4">
           {topTracks?.items?.map((track, i) => (
             <SongCard
               key={track.id}
