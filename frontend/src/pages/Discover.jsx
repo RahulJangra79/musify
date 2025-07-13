@@ -63,7 +63,7 @@
 
 
 import { useDispatch, useSelector } from "react-redux";
-import { useGetGenreTracksQuery } from "../redux/spotifyApi"; // You got this right!
+import { useGetGenreTracksQuery } from "../redux/services/spotify";
 import { Loader, Error, SongCard } from "../components";
 
 import { selectGenreListId } from '../redux/features/playerSlice';
