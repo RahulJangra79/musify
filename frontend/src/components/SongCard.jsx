@@ -35,7 +35,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
 
   return (
     <div
-      className="flex flex-col w-[200px] p-2 hover:bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
+      className="flex flex-col w-[200px] p-3 hover:bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
       onClick={handlePlayClick}
     >
       <div className="relative w-full group">

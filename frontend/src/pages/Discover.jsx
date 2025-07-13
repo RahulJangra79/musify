@@ -59,9 +59,6 @@
 
 // export default Discover;
 
-
-
-
 import { useDispatch, useSelector } from "react-redux";
 import {
   useGetTopTracksQuery,
@@ -94,9 +91,19 @@ const Discover = () => {
   const genreTitle =
     genres.find(({ value }) => value === genreListId)?.title || "";
 
+  // 🔍 Debug genre selection and query triggering
+  console.log("🎧 Selected Genre ID:", genreListId);
+
+  const token = localStorage.getItem("spotify_access_token");
+  console.log("🛡️ Stored access token (first 10 chars):", token?.slice(0, 10));
+
+  console.log("🔄 Genre tracks fetching:", isFetchingGenre);
+  console.log("❌ Genre track error:", errorGenre);
+  console.log("🎵 Genre track response:", genreTracks);
+  
   return (
     <div className="flex flex-col gap-12">
-            <div className="mt-8">
+      <div className="flex justify-between mt-8">
         <h2 className="text-2xl font-bold text-white mb-4">
           Discover by Genre
         </h2>
@@ -143,15 +150,13 @@ const Discover = () => {
       )}
 
       <div>
-        <h2 className="text-2xl font-bold text-white mb-4">
-          Your Top Tracks
-        </h2>
+        <h2 className="text-2xl font-bold text-white mb-4">Your Top Tracks</h2>
         {isFetchingTop ? (
           <Loader title="Loading your vibes..." />
         ) : errorTop ? (
           <Error />
         ) : (
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap">
             {topTracks?.items?.map((track, i) => (
               <SongCard
                 key={track.id}

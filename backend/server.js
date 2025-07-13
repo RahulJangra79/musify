@@ -155,57 +155,12 @@ app.get("/api/tracks/:id", async (req, res) => {
   }
 });
 
-// app.get("/api/recommendations", async (req, res) => {
-//   const token = req.headers.authorization?.split(" ")[1];
-//   const seedTrack = req.query.seed_tracks;
-
-//   console.log("🎯 Incoming /recommendations request");
-//   console.log("🛡️ Received Token (first 10 chars):", token?.slice(0, 10));
-//   console.log("🎵 Received seed_track:", seedTrack);
-
-//   if (!token || !seedTrack) {
-//     console.warn("⚠️ Missing token or seed_tracks parameter");
-//     return res.status(400).json({ error: "Missing token or seed_tracks parameter" });
-//   }
-
-//   try {
-//     const endpoint = `https://api.spotify.com/v1/recommendations`;
-//     const params = new URLSearchParams({
-//       seed_tracks: seedTrack,
-//       market: "IN",
-//       limit: "20",
-//     }).toString();
-
-//     const fullUrl = `${endpoint}?${params}`;
-//     console.log("🌍 Calling Spotify API:", fullUrl);
-
-//     const response = await axios.get(fullUrl, {
-//       headers: { Authorization: `Bearer ${token}` },
-//     });
-
-//     console.log("✅ Spotify recommendations received");
-//     res.json(response.data);
-//   } catch (error) {
-//     console.error("❌ Spotify API failed");
-
-//     // Log full Spotify error response for diagnosis
-//     if (error.response) {
-//       console.error("📦 Status Code:", error.response.status);
-//       console.error("📦 Spotify Error Data:", JSON.stringify(error.response.data, null, 2));
-//     } else {
-//       console.error("📦 Axios Error Message:", error.message);
-//     }
-
-//     res.status(error.response?.status || 500).json({
-//       error: "Failed to fetch recommendations from Spotify",
-//       details: error.response?.data || error.message,
-//     });
-//   }
-// });
-
 app.get("/api/genre-tracks", async (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   const genre = req.query.genre;
+
+  console.log("🛡️ Token received:", token?.slice(0, 10));
+  console.log("🎧 Genre received:", genre);
 
   if (!token || !genre) {
     return res.status(400).json({ error: "Missing token or genre parameter" });
