@@ -98,7 +98,7 @@ const Discover = () => {
     <div className="flex flex-col gap-12">
             <div className="mt-8">
         <h2 className="text-2xl font-bold text-white mb-4">
-          🌐 Discover by Genre
+          Discover by Genre
         </h2>
         <select
           onChange={(e) => dispatch(selectGenreListId(e.target.value))}
@@ -116,56 +116,10 @@ const Discover = () => {
         </select>
       </div>
 
-      <div>
-        <h2 className="text-2xl font-bold text-white mb-4">
-          🎵 Your Top Tracks
-        </h2>
-        {isFetchingTop ? (
-          <Loader title="Loading your vibes..." />
-        ) : errorTop ? (
-          <Error />
-        ) : (
-          <div className="flex flex-wrap gap-6">
-            {topTracks?.items?.map((track, i) => (
-              <SongCard
-                key={track.id}
-                song={track}
-                i={i}
-                data={topTracks.items}
-                isPlaying={isPlaying}
-                activeSong={activeSong}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Genre Selector */}
-      {/* <div className="mt-8">
-        <h2 className="text-2xl font-bold text-white mb-4">
-          🌐 Discover by Genre
-        </h2>
-        <select
-          onChange={(e) => dispatch(selectGenreListId(e.target.value))}
-          value={genreListId || ""}
-          className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none"
-        >
-          <option value="" disabled>
-            Select your vibe
-          </option>
-          {genres.map((genre) => (
-            <option key={genre.value} value={genre.value}>
-              {genre.title}
-            </option>
-          ))}
-        </select>
-      </div> */}
-
-      {/* Genre-Based Tracks */}
       {genreListId && (
         <div className="mt-10">
           <h2 className="text-2xl font-bold text-white mb-4">
-            🔍 Recommended {genreTitle} Tracks
+            Recommended {genreTitle} Tracks
           </h2>
           {isFetchingGenre ? (
             <Loader title={`Loading ${genreTitle} tracks...`} />
@@ -187,6 +141,30 @@ const Discover = () => {
           )}
         </div>
       )}
+
+      <div>
+        <h2 className="text-2xl font-bold text-white mb-4">
+          Your Top Tracks
+        </h2>
+        {isFetchingTop ? (
+          <Loader title="Loading your vibes..." />
+        ) : errorTop ? (
+          <Error />
+        ) : (
+          <div className="flex flex-wrap gap-6">
+            {topTracks?.items?.map((track, i) => (
+              <SongCard
+                key={track.id}
+                song={track}
+                i={i}
+                data={topTracks.items}
+                isPlaying={isPlaying}
+                activeSong={activeSong}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
