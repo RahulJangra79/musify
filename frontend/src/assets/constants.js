@@ -1,8 +1,22 @@
-// import { HiOutlineHashtag, HiOutlineHome, HiOutlinePhotograph, HiOutlineUserGroup } from 'react-icons/hi';
-
-// export const links = [
-//   { name: 'Discover', to: '/', icon: HiOutlineHome },
-//   { name: 'Around You', to: '/around-you', icon: HiOutlinePhotograph },
-//   { name: 'Top Artists', to: '/top-artists', icon: HiOutlineUserGroup },
-//   { name: 'Top Charts', to: '/top-charts', icon: HiOutlineHashtag },
-// ];
+export const genres = [
+  { title: 'Pop', value: 'pop' },
+  { title: 'Hip-Hop', value: 'hip-hop' },
+  { title: 'Dance', value: 'dance' },
+  { title: 'Electronic', value: 'electronic' },
+  { title: 'R&B', value: 'r-n-b' },
+  { title: 'Alternative', value: 'alternative' },
+  { title: 'Rock', value: 'rock' },
+  { title: 'Latin', value: 'latin' },
+  { title: 'Classical', value: 'classical' },
+  { title: 'Country', value: 'country' },
+  { title: 'Reggae', value: 'reggae' },
+  { title: 'House', value: 'house' },
+  { title: 'K-Pop', value: 'k-pop' },
+  { title: 'Jazz', value: 'jazz' },
+  { title: 'Metal', value: 'metal' },
+  { title: 'Blues', value: 'blues' },
+  { title: 'Funk', value: 'funk' },
+  { title: 'Soul', value: 'soul' },
+  { title: 'Punk', value: 'punk' },
+  { title: 'Trance', value: 'trance' },
+];

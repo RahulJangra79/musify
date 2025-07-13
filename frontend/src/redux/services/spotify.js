@@ -54,6 +54,9 @@ export const spotifyApi = createApi({
           term
         )}&type=track&limit=20`,
     }),
+    getGenreTracks: builder.query({
+      query: (genre) => `genre-tracks?genre=${encodeURIComponent(genre)}`,
+    }),
   }),
 });
 
@@ -67,4 +70,5 @@ export const {
   useGetArtistDetailsQuery,
   useGetArtistTopTracksQuery,
   useSearchTracksQuery,
+  useGetGenreTracksQuery,
 } = spotifyApi;
