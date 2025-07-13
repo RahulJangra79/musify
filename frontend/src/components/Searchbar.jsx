@@ -19,12 +19,12 @@ const Searchbar = () => {
     <form
       onSubmit={handleSubmit}
       autoComplete="off"
-      className="bg-[#1e1e1e] p-2 text-gray-400 focus-within:text-gray-600"
+      className="p-2 text-gray-400 focus-within:text-gray-600"
     >
       <label htmlFor="search-field" className="sr-only">
         Search tracks on Spotify
       </label>
-      <div className="flex flex-row justify-start items-center">
+      <div className="bg-[#1e1e1e] rounded-full flex flex-row justify-start items-center">
         <FiSearch aria-hidden="true" className="w-5 h-5 ml-4" />
         <input
           name="search-field"
