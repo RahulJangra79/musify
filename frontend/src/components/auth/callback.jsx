@@ -16,14 +16,9 @@ const Callback = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data?.access_token) {
+            const expiresAt = Date.now() + 3600 * 1000; // 1 hour from now
             localStorage.setItem("spotify_access_token", data.access_token);
-
-            // Delete token after 3600 seconds (1 hour)
-            setTimeout(() => {
-              localStorage.removeItem("spotify_access_token");
-              console.log("Access token expired and removed from localStorage");
-              navigate("/login");
-            }, 3600 * 1000);
+            localStorage.setItem("spotify_expires_at", expiresAt.toString());
 
             navigate("/");
           } else {
@@ -35,6 +30,7 @@ const Callback = () => {
         });
     }
   }, []);
+
 
   return <div className="text-white">Authenticating with Spotify...</div>;
 };

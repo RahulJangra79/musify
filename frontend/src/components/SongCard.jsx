@@ -35,10 +35,10 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
 
   return (
     <div
-      className="flex flex-col w-[240px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
+      className="flex flex-col w-[200px] p-4 hover:bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
       onClick={handlePlayClick}
     >
-      <div className="relative w-full h-56 group">
+      <div className="relative w-full group">
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
             activeSong?.id === song?.id
@@ -61,7 +61,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
         />
       </div>
 
-      <div className="mt-4 flex flex-col">
+      <div className="mt-2 flex flex-col">
         <p className="font-semibold text-lg text-white truncate">
           <Link to={`/songs/${song.id}`}>{name}</Link>
         </p>
