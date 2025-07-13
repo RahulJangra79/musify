@@ -23,8 +23,8 @@ const TopChartCard = ({
   handlePlayClick,
 }) => (
   <div
-    className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${
-      activeSong?.name === song?.name ? "bg-[#4c426e]" : "bg-transparent"
+    className={`w-full flex flex-row items-center hover:bg-[#4c4c4c] ${
+      activeSong?.name === song?.name ? "bg-[#4c4c4c]" : "bg-transparent"
     } p-2 rounded-lg cursor-pointer`}
   >
     <div className="flex-1 flex flex-row justify-between items-center">
