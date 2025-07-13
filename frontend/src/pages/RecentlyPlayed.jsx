@@ -12,7 +12,7 @@ const RecentlyPlayed = () => {
   return (
     <div className="flex flex-col gap-6">
       <h2 className="text-3xl font-bold text-white mb-6">Recently Played</h2>
-      <div className="flex flex-wrap gap-8">
+      <div className="flex flex-wrap">
         {data?.items?.map(({ track }, i) => (
           <SongCard
             key={track.id}

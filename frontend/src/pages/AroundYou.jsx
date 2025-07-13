@@ -16,7 +16,7 @@ const CountryTracks = () => {
         Discover Around you
       </h2>
 
-      <div className="flex flex-wrap sm:justify-start justify-center gap-8">
+      <div className="flex flex-wrap sm:justify-start justify-center">
         {data?.items?.map((song, i) => (
           <SongCard
             key={song.id}

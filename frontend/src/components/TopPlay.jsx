@@ -120,7 +120,7 @@ const TopPlay = () => {
         </div>
       </div>
 
-      <div className="w-full flex flex-col mt-8">
+      <div className="w-full flex flex-col mt-8 mb-8">
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-white font-bold text-2xl sm:text-xl">
             Top Artists
@@ -149,7 +149,7 @@ const TopPlay = () => {
                 <img
                   src={artist?.images?.[0]?.url}
                   alt={artist?.name}
-                  className="rounded-full w-[120px] h-[120px] mx-auto object-cover"
+                  className="rounded-full w-[100px] h-[100px] mx-auto object-cover"
                 />
               </Link>
             </SwiperSlide>
