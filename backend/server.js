@@ -174,6 +174,8 @@ app.get("/api/genre-tracks", async (req, res) => {
       limit: "20",
     });
 
+    console.log("🌍 Final Spotify URL:", `${endpoint}?${params.toString()}`);
+
     const response = await axios.get(`${endpoint}?${params.toString()}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
